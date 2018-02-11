@@ -40,6 +40,7 @@ namespace StellarisModInstaller
                 var savePath = Path.Combine(ModPath, $"ugc_{modId}.mod");
 
                 UpdateArchivePath(descriptorPath, mod, savePath);
+                AddAttribute(savePath, FileAttributes.ReadOnly);
             }
         }
 
@@ -69,7 +70,7 @@ namespace StellarisModInstaller
         private static void AddAttribute(string file, FileAttributes attribute)
         {
             var attributes = File.GetAttributes(file);
-            attributes |= ~attribute;
+            attributes |= attribute;
             File.SetAttributes(file, attributes);
         }
     }
